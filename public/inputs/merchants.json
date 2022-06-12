@@ -1,0 +1,16 @@
+{
+  "RECORDS":[
+  {
+  "id":"1",
+  "name":"Flatley-Rowe",
+  "email":"info@flatley-rowe.com",
+  "cif":"B611111111"
+  },
+  {
+  "id":"2",
+  "name":"Weissnat, Hackett and Purdy",
+  "email":"info@weissnat-hackett-and-purdy.com",
+  "cif":"B611111112"
+  }
+  ]
+}
