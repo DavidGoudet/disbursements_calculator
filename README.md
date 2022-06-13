@@ -20,7 +20,7 @@ The app is using the Ruby on Rails framework to work. To test it in a local envi
 `http://127.0.0.1:3000/fetch`
 * Calculate the disbursements by browsing:
 `http://127.0.0.1:3000/calculator/01-01-2018/B611111112`
-Where `01-01-2018` represents a week and **must be a Monday** and `B611111112` represents the CIF of a Merchant.
+Where `01-01-2018` represents a week and **must be a Monday** and `B611111112` represents the CIF of a Merchant. Format: day-month-year.
 
 ## Technologies
 * Ruby 2.7.3
@@ -33,3 +33,7 @@ Where `01-01-2018` represents a week and **must be a Monday** and `B611111112` r
 ## Patterns
 * Strategy: in both the fetcher and the calculator the app is using a Strategy Pattern by using Rails modules. Making easy the creation of new fetchers (as for CSV) and calculators (i.e. for other countries).
 * Builder: the calculator is using an implicit Builder Pattern that allows the easy replacement of the methods for other calculators.
+
+## To do
+* Prevention of errors on json input
+* Creation of a table to manage async jobs

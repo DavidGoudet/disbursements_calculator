@@ -24,11 +24,22 @@ module Calculators
       raise ArgumentError, 'The system cant find a merchant with the providen CIF' if merchant.blank?
 
       orders = Order.where(merchant: merchant, order_completion: week_segment)
-      orders.inject(0) { |sum, order| sum + calculate_order_disbursement(order.amount) }
+      calculate_sum(orders).to_s
     end
 
     def calculate_several_merchants(week_segment)
-      orders = Order.where(order_completion: week_segment)
+      disbursements_by_merchant = []
+      present_merchants.each do |query|
+        merchant = Merchant.find(query[:merchant_id])
+        orders = Order.where(merchant: merchant, order_completion: week_segment)
+        disbursements_by_merchant.push(
+          [merchant.name, calculate_sum(orders).to_s]
+        )
+      end
+      disbursements_by_merchant
+    end
+
+    def calculate_sum(orders)
       orders.inject(0) { |sum, order| sum + calculate_order_disbursement(order.amount) }
     end
 
@@ -42,6 +53,10 @@ module Calculators
       elsif amount.negative?
         raise ArgumentError, 'One of the orders amounts is negative' if amount.negative?
       end
+    end
+
+    def present_merchants
+      Order.select(:merchant_id).distinct
     end
   end
 end

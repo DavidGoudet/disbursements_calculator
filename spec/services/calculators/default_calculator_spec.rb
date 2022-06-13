@@ -66,8 +66,10 @@ RSpec.describe Calculators::DefaultCalculator, type: :service do
       let!(:order2) { create(:order_default, amount: Monetize.parse('€350.994'), merchant: merchant2) }
 
       it 'returns the disbursement of the order' do
-        disbursement =  order.amount - (order.amount * Figaro.env.fee_50_to_300.to_d) +
-                        order2.amount - (order2.amount * Figaro.env.over_300_fee.to_d)
+        disbursement = [
+          [merchant.name, order.amount - (order.amount * Figaro.env.fee_50_to_300.to_d)],
+          [merchant2.name, order2.amount - (order2.amount * Figaro.env.over_300_fee.to_d)]
+        ]
 
         expect(described_class.new('', week_starting_day).call).to eq(disbursement)
       end
