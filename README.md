@@ -29,3 +29,7 @@ RSpec for the testing suite
 Sidekiq for background job processing
 Figaro for app configuration
 Rubocop as code analyzer
+
+##Patterns
+* Strategy: in both the fetcher and the calculator the app is using a Strategy Pattern by using Rails modules. Making easy the creation of new fetchers (as for CSV) and calculators (i.e. for other countries).
+* Builder: the calculator is using an implicit Builder Pattern that allows the easy replacement of the methods for other calculators.
