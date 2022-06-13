@@ -24,10 +24,15 @@ Where `01-01-2018` represents a week and **must be a Monday** and `B611111112` r
 
 ## Technologies
 Ruby 2.7.3
+
 Ruby on Rails 7.0.3
+
 RSpec for the testing suite
+
 Sidekiq for background job processing
+
 Figaro for app configuration
+
 Rubocop as code analyzer
 
 ## Patterns
