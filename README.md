@@ -37,3 +37,8 @@ Where `01-01-2018` represents a week and **must be a Monday** and `B611111112` r
 ## To do
 * Prevention of errors on json input
 * Creation of a table to manage async jobs
+
+## Comments
+* Indexes are not needed as the merchant_id column for the orders table is already indexed. An index on the `completion_date` could be considered.
+* The app is using the library Money to maintain consistency on calculations.
+* This implementation is assuming that files are not going to be reloaded, the database should be clean on fetch. 
