@@ -77,3 +77,4 @@ end
 
 gem 'money-rails', '~>1.12'
 gem 'sidekiq'
+gem 'figaro'

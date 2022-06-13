@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get 'fetch', to: 'fetch#show'
+  get 'calculator/:week/:merchant_cif', to: 'calculator#show'
 end

@@ -16,7 +16,7 @@ RSpec.describe Calculators::DefaultCalculator, type: :service do
       let!(:order) { create(:order_default, merchant: merchant) }
 
       it 'returns the disbursement of the order' do
-        disbursement = order.amount - order.amount * 0.0095
+        disbursement = order.amount - order.amount * Figaro.env.fee_50_to_300.to_d
 
         expect(subject).to eq(disbursement)
       end
@@ -37,7 +37,7 @@ RSpec.describe Calculators::DefaultCalculator, type: :service do
       }
 
       it 'returns the sum of disbursements' do
-        disbursement = (order.amount - order.amount * 0.0095) + (order_2.amount - order_2.amount * 0.0085)
+        disbursement = (order.amount - order.amount * Figaro.env.fee_50_to_300.to_d) + (order_2.amount - order_2.amount * Figaro.env.over_300_fee.to_d)
 
         expect(subject).to eq(disbursement)
       end

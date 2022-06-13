@@ -6,7 +6,7 @@
   "shopper_id":"125",
   "amount":"445.5",
   "created_at":"01/01/2018 02:51:00",
-  "completed_at":""
+  "completed_at":"01/01/2018 02:59:00"
   },
   {
   "id":"8",
@@ -14,7 +14,7 @@
   "shopper_id":"325",
   "amount":"190.61",
   "created_at":"01/01/2018 07:36:00",
-  "completed_at":""
+  "completed_at":"01/01/2018 10:51:00"
   }
   ]
 }

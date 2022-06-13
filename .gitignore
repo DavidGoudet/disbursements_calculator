@@ -1,0 +1,12 @@
+*.log
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+.byebug_history
+/spec/tmp
+*.rbc
+.env
+config/master.key
+# Ignore application configuration
+/config/application.yml
