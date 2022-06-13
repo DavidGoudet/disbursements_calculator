@@ -7,7 +7,7 @@ class FetchController < ActionController::Base
     if Order.first.present?
       render json: 'The orders were loaded', status: :ok
     elsif merchants_file.present? && orders_file.present?
-      FetchWorker.perform_async(merchants_file, orders_file)
+      FetchWorker.new.perform(merchants_file, orders_file)
       render json: 'The files are being imported', status: :ok
     else
       render json: 'Please add the files to import in the folder public/inputs', status: :ok

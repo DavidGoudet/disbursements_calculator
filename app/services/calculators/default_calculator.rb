@@ -11,11 +11,13 @@ module Calculators
 
     def call
       week_day = week_string.to_date
-      raise ArgumentError.new("The day of the week has to be a Monday") unless week_day.monday?
-
-      week_segment = week_day-6.day..week_day
       merchant = Merchant.find_by(cif: merchant_cif)
-      orders = Order.where(merchant_id: merchant.id, :order_completion => week_segment)
+      raise ArgumentError.new("The day of the week has to be a Monday") unless week_day.monday?
+      raise ArgumentError.new("The system cant find a merchant with the providen CIF") unless merchant.present?
+      raise IOError.new("The orders and merchants werent changed yet") unless Order.first.present?
+
+      week_segment = (week_day-6.day).beginning_of_day..week_day.end_of_day
+      orders = Order.where(merchant: merchant, :order_completion => week_segment)
       total_disbursement = orders.inject(0) { |sum, order| sum + calculate_order_disbursement(order.amount) }
     end
 
