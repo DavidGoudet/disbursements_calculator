@@ -4,9 +4,9 @@ module Fetchers
   class JsonFetcher
     attr_reader :merchants_path, :orders_path
 
-    def initialize(merchants_path, orders_path)
-      @merchants_path = merchants_path
-      @orders_path = orders_path
+    def initialize
+      @merchants_path = Rails.root.join(Figaro.env.merchants_file_path)
+      @orders_path = Rails.root.join(Figaro.env.orders_file_path)
     end
 
     def call
@@ -19,7 +19,7 @@ module Fetchers
     private
 
     def save_merchants(merchants_data)
-      raise ArgumentError.new('The JSON data for merchants is not correctly formatted') if merchants_data.nil?
+      raise ArgumentError, 'The JSON data for merchants is not correctly formatted' if merchants_data.nil?
 
       merchants_data.each do |merchant|
         Merchant.create(
@@ -32,7 +32,7 @@ module Fetchers
     end
 
     def save_orders(orders_data)
-      raise ArgumentError.new('The JSON data for orders is not correctly formatted') if orders_data.nil?
+      raise ArgumentError, 'The JSON data for orders is not correctly formatted' if orders_data.nil?
 
       orders_data.each do |order|
         new_order = Order.create(

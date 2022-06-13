@@ -3,7 +3,7 @@
 class FetchWorker
   include Sidekiq::Worker
 
-  def perform(merchants_path, orders_path)
-    Fetchers::JsonFetcher.new(merchants_path, orders_path).call
+  def perform
+    Fetchers::JsonFetcher.new.call
   end
 end

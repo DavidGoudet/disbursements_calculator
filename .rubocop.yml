@@ -1,0 +1,64 @@
+require:
+  - rubocop-rspec
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - vendor/**/*
+    - tmp/*
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Layout/EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: true
+
+# Layout/LineLength:
+#   Max: 120
+
+Lint/SuppressedException:
+  Exclude:
+    - spec/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+    - config/routes.rb
+
+Performance/RedundantMerge:
+  MaxKeyValuePairs: 1
+
+Rails/DynamicFindBy:
+  Exclude:
+    - app/services/quote_manager.rb
+    - app/services/save_and_retrieve.rb
+    - spec/services/online_carriers/renewal_repository_spec.rb
+    - spec/services/online_carriers/repository_spec.rb
+
+Rails/UnknownEnv:
+  Environments: development, test, beta, production
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/ExpectChange:
+  EnforcedStyle: block
+
+RSpec/EmptyLineAfterExample:
+  Enabled: false
+
+RSpec/HooksBeforeExamples:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false

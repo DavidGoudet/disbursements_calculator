@@ -1,16 +1,20 @@
 # frozen_string_literal: true
 
-class FetchController < ActionController::Base
+class FetchController < ApplicationController
   def show
-    merchants_file = File.join(Rails.root, 'public', 'inputs', 'merchants.json')
-    orders_file = File.join(Rails.root, 'public', 'inputs', 'orders.json')
     if Order.first.present?
       render json: 'The orders were loaded', status: :ok
-    elsif merchants_file.present? && orders_file.present?
-      FetchWorker.new.perform(merchants_file, orders_file)
+    elsif files_are_present
+      FetchWorker.new.perform
       render json: 'The files are being imported', status: :ok
     else
       render json: 'Please add the files to import in the folder public/inputs', status: :ok
     end
+  end
+
+  def files_are_present
+    merchants_file = Rails.root.join(Figaro.env.merchants_file_path)
+    orders_file = Rails.root.join(Figaro.env.orders_file_path)
+    merchants_file.present? && orders_file.present?
   end
 end
